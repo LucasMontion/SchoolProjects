@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+    <head>	
+    <style>
+        .button{
+            background-color: blue;
+            color: white;
+            width: 100px;
+            height: 30px;
+        }
+    </style>
+    </head>
+
+    <body>
+        <script type="text/javascript" language="JavaScript">
+        var first = ["one","two","three","four","five","six","seven",
+        "eight","nine","eleven","twelve","thirteen","fourteen",
+        "fifteen","sixteen","seventeen","eighteen","nineteen"];
+
+        var tens = ["ten","twenty","thirty","forty","fifty","sixty",
+        "seventy","eighty","ninety"];
+
+        var clicks=0;
+        var number="";
+        var index=0;
+        var indexTen=0;
+
+        function showNum() {
+            clicks += 1;
+            if(clicks%10==0){
+                indexTen = Math.floor(clicks/10)-1;
+                number = tens[indexTen];
+                
+            }else if(clicks/10<2  && clicks/10>1){
+                index = (clicks%10)-1;
+                number = first[index+9];
+
+            }else if(clicks>20){
+                index = (clicks%10)-1;
+                indexTen = Math.floor(clicks/10)-1;
+                number = tens[indexTen]+" "+first[index];
+
+
+            }else{
+                number = first[clicks-1];
+            }
+            try{
+                if(clicks>=100) throw "MAX_VALUE_REACHED : 100";
+            }
+            catch(err){
+                number = "MAX_VALUE_REACHED : 100";
+            }
+            
+            document.getElementById("number").innerHTML = number;
+        };
+
+        </script>
+    
+    <h1><a id="number">Zero</a></h1>
+    <button class="button" onclick="showNum()">Click me</button>
+    </body>
+</html>
